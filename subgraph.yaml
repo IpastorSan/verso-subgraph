@@ -1,0 +1,57 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: MasterCollection
+    network: optimism-goerli
+    source:
+      address: "0xb3f6FEF48D0CbeD57eBDdF92E058e6e5ACfa33e1"
+      abi: MasterCollection
+      startBlock: 13770083
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AdminChanged
+        - ApprovalForAll
+        - BeaconUpgraded
+        - Initialized
+        - NewVersoCollected
+        - NewVersoCreated
+        - OwnershipTransferred
+        - TransferBatch
+        - TransferSingle
+        - URI
+        - Upgraded
+        - VersoDeleted
+      abis:
+        - name: MasterCollection
+          file: ./abis/MasterCollection.json
+      eventHandlers:
+        - event: AdminChanged(address,address)
+          handler: handleAdminChanged
+        - event: ApprovalForAll(indexed address,indexed address,bool)
+          handler: handleApprovalForAll
+        - event: BeaconUpgraded(indexed address)
+          handler: handleBeaconUpgraded
+        - event: Initialized(uint8)
+          handler: handleInitialized
+        - event: NewVersoCollected(address,uint256,address)
+          handler: handleNewVersoCollected
+        - event: NewVersoCreated(address,uint256,string)
+          handler: handleNewVersoCreated
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: TransferBatch(indexed address,indexed address,indexed address,uint256[],uint256[])
+          handler: handleTransferBatch
+        - event: TransferSingle(indexed address,indexed address,indexed address,uint256,uint256)
+          handler: handleTransferSingle
+        - event: URI(string,indexed uint256)
+          handler: handleURI
+        - event: Upgraded(indexed address)
+          handler: handleUpgraded
+        - event: VersoDeleted(address,address,uint256)
+          handler: handleVersoDeleted
+      file: ./src/master-collection.ts

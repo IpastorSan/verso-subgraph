@@ -1,0 +1,8 @@
+{
+  "optimism-goerli": {
+    "MasterCollection": {
+      "address": "0xb3f6FEF48D0CbeD57eBDdF92E058e6e5ACfa33e1",
+      "startBlock": 13770083
+    }
+  }
+}
