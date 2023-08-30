@@ -55,3 +55,59 @@ dataSources:
         - event: VersoDeleted(address,address,uint256)
           handler: handleVersoDeleted
       file: ./src/master-collection.ts
+  - kind: ethereum
+    name: ProfileRegistry
+    network: optimism-goerli
+    source:
+      address: "0xd33A71C3c4e5cb1c520aA0f82BF99125bDE32EB2"
+      abi: ProfileRegistry
+      startBlock: 12992577
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - ProfileRegistryAdminChanged
+        - Approval
+        - ProfileRegistryApprovalForAll
+        - BatchMetadataUpdate
+        - ProfileRegistryBeaconUpgraded
+        - CompositionAdded
+        - CompositionRemoved
+        - ProfileRegistryInitialized
+        - MetadataUpdate
+        - NewProfileCreated
+        - ProfileRegistryOwnershipTransferred
+        - Transfer
+        - ProfileRegistryUpgraded
+      abis:
+        - name: ProfileRegistry
+          file: ./abis/ProfileRegistry.json
+      eventHandlers:
+        - event: AdminChanged(address,address)
+          handler: handleAdminChanged
+        - event: Approval(indexed address,indexed address,indexed uint256)
+          handler: handleApproval
+        - event: ApprovalForAll(indexed address,indexed address,bool)
+          handler: handleApprovalForAll
+        - event: BatchMetadataUpdate(uint256,uint256)
+          handler: handleBatchMetadataUpdate
+        - event: BeaconUpgraded(indexed address)
+          handler: handleBeaconUpgraded
+        - event: CompositionAdded(uint256,address)
+          handler: handleCompositionAdded
+        - event: CompositionRemoved(uint256,uint256)
+          handler: handleCompositionRemoved
+        - event: Initialized(uint8)
+          handler: handleInitialized
+        - event: MetadataUpdate(uint256)
+          handler: handleMetadataUpdate
+        - event: NewProfileCreated(address,string)
+          handler: handleNewProfileCreated
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+        - event: Upgraded(indexed address)
+          handler: handleUpgraded
+      file: ./src/profile-registry.ts

@@ -3,6 +3,9 @@
     "MasterCollection": {
       "address": "0xb3f6FEF48D0CbeD57eBDdF92E058e6e5ACfa33e1",
       "startBlock": 13770083
+    },
+    "ProfileRegistry": {
+      "address": "0xd33A71C3c4e5cb1c520aA0f82BF99125bDE32EB2"
     }
   }
 }
