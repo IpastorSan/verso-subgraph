@@ -1,6 +1,6 @@
 specVersion: 0.0.5
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum
     name: MasterCollection
@@ -22,7 +22,7 @@ dataSources:
         - VersoDeleted
       abis:
         - name: MasterCollection
-          file: ./abis/MasterCollection.json
+          file: MasterCollection/abis/MasterCollection.json
       eventHandlers:
         - event: NewVersoCollected(address,uint256,address)
           handler: handleNewVersoCollected
@@ -36,7 +36,7 @@ dataSources:
           handler: handleURI
         - event: VersoDeleted(address,address,uint256)
           handler: handleVersoDeleted
-      file: ./src/verso.ts
+      file: MasterCollection/MasterCollection.wasm
   - kind: ethereum
     name: ProfileRegistry
     network: optimism-goerli
@@ -55,7 +55,7 @@ dataSources:
         - Transfer
       abis:
         - name: ProfileRegistry
-          file: ./abis/ProfileRegistry.json
+          file: ProfileRegistry/abis/ProfileRegistry.json
       eventHandlers:
         - event: CompositionAdded(uint256,address)
           handler: handleCompositionAdded
@@ -65,4 +65,4 @@ dataSources:
           handler: handleNewProfileCreated
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleTransfer
-      file: ./src/verso.ts
+      file: MasterCollection/MasterCollection.wasm
