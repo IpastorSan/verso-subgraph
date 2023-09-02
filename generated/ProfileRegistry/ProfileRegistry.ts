@@ -224,6 +224,14 @@ export class NewProfileCreated__Params {
   get handle(): string {
     return this._event.parameters[1].value.toString();
   }
+
+  get newRecordId(): BigInt {
+    return this._event.parameters[2].value.toBigInt();
+  }
+
+  get metadataURI(): string {
+    return this._event.parameters[3].value.toString();
+  }
 }
 
 export class OwnershipTransferred extends ethereum.Event {

@@ -1,3 +1,30 @@
+type UserProfile @entity {
+  id: String! # Add this line
+  profileId: ID!
+  handle: String!
+  address: Bytes! # address
+  uri: String!
+  collections: [String!]
+  collectedVerso: [Token!]
+  createdVerso: [Token!]
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Token @entity {
+  id: String! # Add this line
+  tokenId: ID!
+  uri: String!
+  creator : String!
+  # collectors: List of UserProfiles who collected the token
+  # collectors: [UserProfile!]
+  collectors: [String!]
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
 type AdminChanged @entity(immutable: true) {
   id: Bytes!
   previousAdmin: Bytes! # address

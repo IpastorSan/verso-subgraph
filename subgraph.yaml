@@ -102,7 +102,7 @@ dataSources:
           handler: handleInitialized
         - event: MetadataUpdate(uint256)
           handler: handleMetadataUpdate
-        - event: NewProfileCreated(address,string)
+        - event: NewProfileCreated(address,string,uint256,string)
           handler: handleNewProfileCreated
         - event: OwnershipTransferred(indexed address,indexed address)
           handler: handleOwnershipTransferred
