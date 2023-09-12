@@ -623,6 +623,29 @@ export class MasterCollection extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBoolean());
   }
 
+  tokenPermissions(param0: BigInt): Address {
+    let result = super.call(
+      "tokenPermissions",
+      "tokenPermissions(uint256):(address)",
+      [ethereum.Value.fromUnsignedBigInt(param0)]
+    );
+
+    return result[0].toAddress();
+  }
+
+  try_tokenPermissions(param0: BigInt): ethereum.CallResult<Address> {
+    let result = super.tryCall(
+      "tokenPermissions",
+      "tokenPermissions(uint256):(address)",
+      [ethereum.Value.fromUnsignedBigInt(param0)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toAddress());
+  }
+
   tokenSupply(param0: BigInt): BigInt {
     let result = super.call("tokenSupply", "tokenSupply(uint256):(uint256)", [
       ethereum.Value.fromUnsignedBigInt(param0)

@@ -1,9 +1,9 @@
 type UserProfile @entity {
   id: String! # Add this line
   profileId: ID!
-  handle: String!
+  # handle: String!
   address: Bytes! # address
-  uri: String!
+  #uri: String!
   collections: [String!]
   collectedVerso: [Token!]
   createdVerso: [Token!]
@@ -16,8 +16,8 @@ type Token @entity {
   id: String! # Add this line
   tokenId: ID!
   uri: String!
-  creator : String!
-  # collectors: List of UserProfiles who collected the token
+  creator : ID!
+  # collectors: List of UserProfiles who collected the token.
   # collectors: [UserProfile!]
   collectors: [String!]
   blockNumber: BigInt!

@@ -178,18 +178,6 @@
         "internalType": "string",
         "name": "handle",
         "type": "string"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "newRecordId",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "metadataURI",
-        "type": "string"
       }
     ],
     "name": "NewProfileCreated",

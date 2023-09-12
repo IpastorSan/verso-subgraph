@@ -23,13 +23,13 @@ VersoDeleted as VersoDeletedEvent
 import { Address } from "@graphprotocol/graph-ts";
 
 //---------------------------Registry Specific------------------------------------
-export function handleNewProfileCreated(event: NewProfileCreatedEvent): void {
-    let entity = new UserProfile(
-      event.params.newRecordId.toString()
+/* export function handleNewProfileCreated(event: NewProfileCreatedEvent): void {
+    let entity = UserProfile.load(
+      event.params.tokenId.toString()
     )
     entity.address = event.params.account
     entity.handle = event.params.handle
-    entity.uri = event.params.metadataURI
+    //entity.uri = event.params.metadataURI
     
   
     entity.blockNumber = event.block.number
@@ -37,20 +37,30 @@ export function handleNewProfileCreated(event: NewProfileCreatedEvent): void {
     entity.transactionHash = event.transaction.hash
   
     entity.save()
+  } */
+
+  export function handleTransferOrCreate(event: TransferEvent): void {
+    let entity: UserProfile | null;
+  
+    // Check if the from address is the zero address
+    if (event.params.from.toHexString() == '0x0000000000000000000000000000000000000000') {
+      // Create a new UserProfile entity
+      entity = new UserProfile(event.params.tokenId.toString());
+    } else {
+      // Load the existing UserProfile entity
+      entity = UserProfile.load(event.params.tokenId.toString());
+    }
+  
+    if (entity != null) {
+      entity.profileId = event.params.tokenId.toString(); // Set the profileId here
+      entity.address = event.params.to;
+      entity.blockNumber = event.block.number;
+      entity.blockTimestamp = event.block.timestamp;
+      entity.transactionHash = event.transaction.hash;
+      entity.save();
+    }
   }
 
-  export function handleTransfer(event: TransferEvent): void {
-    let entity = UserProfile.load(
-      event.params.tokenId.toString()
-    )
-    entity!.address = event.params.to
-  
-    entity!.blockNumber = event.block.number
-    entity!.blockTimestamp = event.block.timestamp
-    entity!.transactionHash = event.transaction.hash
-  
-    entity!.save()
-  }
 
   export function handleCompositionAdded(event: CompositionAddedEvent): void {
     let entity = UserProfile.load(
@@ -99,6 +109,7 @@ export function handleNewProfileCreated(event: NewProfileCreatedEvent): void {
   export function handleNewVersoCreated(event: NewVersoCreatedEvent): void {
     let entity = new Token(event.params.id.toString())
     
+    entity.tokenId = event.params.id.toString()
     entity.creator = event.params.account.toString()
     entity.uri = event.params.metadataURI
   

@@ -6,9 +6,9 @@ dataSources:
     name: MasterCollection
     network: optimism-goerli
     source:
-      address: "0xb3f6FEF48D0CbeD57eBDdF92E058e6e5ACfa33e1"
+      address: "0xeccd9AdCF58Ab39A0Dd04cB2a43fD1a8a00cB25b"
       abi: MasterCollection
-      startBlock: 13770083
+      startBlock: 14073394
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -41,9 +41,9 @@ dataSources:
     name: ProfileRegistry
     network: optimism-goerli
     source:
-      address: "0xd33A71C3c4e5cb1c520aA0f82BF99125bDE32EB2"
+      address: "0x2922D9AF2B794DdD08d077d6576015Fef6e97665"
       abi: ProfileRegistry
-      startBlock: 12992577
+      startBlock: 12956296
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -51,7 +51,6 @@ dataSources:
       entities:
         - CompositionAdded
         - CompositionRemoved
-        - NewProfileCreated
         - Transfer
       abis:
         - name: ProfileRegistry
@@ -61,8 +60,6 @@ dataSources:
           handler: handleCompositionAdded
         - event: CompositionRemoved(uint256,uint256)
           handler: handleCompositionRemoved
-        - event: NewProfileCreated(address,string,uint256,string)
-          handler: handleNewProfileCreated
         - event: Transfer(indexed address,indexed address,indexed uint256)
-          handler: handleTransfer
+          handler: handleTransferOrCreate
       file: MasterCollection/MasterCollection.wasm
