@@ -69,9 +69,9 @@ import { Address } from "@graphprotocol/graph-ts";
     if (entity) {
       let collections = entity.collections;
       if (collections) {
-          collections = collections.concat([event.params.collection.toString()]);
+          collections.push(event.params.collection.toHexString());
       } else {
-          collections = [event.params.collection.toString()];
+          collections = [event.params.collection.toHexString()];
       }
       entity.collections = collections;
   }
@@ -136,7 +136,7 @@ import { Address } from "@graphprotocol/graph-ts";
     if (entity) {
       let collectors = entity.collectors;
       if (collectors) {
-          collectors = collectors.concat([event.params.account.toHexString()]);
+          collectors.push(event.params.account.toHexString());
       } else {
           collectors = [event.params.account.toHexString()];
       }
@@ -164,7 +164,7 @@ import { Address } from "@graphprotocol/graph-ts";
           }
       } else if (collectors && event.params.to != new Address(0)) {
         if (collectors) {
-          collectors = collectors.concat([event.params.to.toHexString()]);
+          collectors.push(event.params.to.toHexString());
       } else {
           collectors = [event.params.to.toHexString()];
       }
@@ -197,7 +197,7 @@ import { Address } from "@graphprotocol/graph-ts";
             }
         } else if (collectors && event.params.to != new Address(0)) {
           if (collectors) {
-            collectors = collectors.concat([event.params.to.toHexString()]);
+            collectors.push(event.params.to.toHexString());
         } else {
             collectors = [event.params.to.toHexString()];
         } 

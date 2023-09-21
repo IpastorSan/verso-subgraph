@@ -4,11 +4,11 @@ schema:
 dataSources:
   - kind: ethereum
     name: MasterCollection
-    network: optimism-goerli
+    network: optimism
     source:
-      address: "0xeccd9AdCF58Ab39A0Dd04cB2a43fD1a8a00cB25b"
+      address: "0x93E165Fdd369De614B1585af9937F49c61b0C938"
       abi: MasterCollection
-      startBlock: 14073394
+      startBlock: 109329483
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -39,11 +39,11 @@ dataSources:
       file: ./src/verso.ts
   - kind: ethereum
     name: ProfileRegistry
-    network: optimism-goerli
+    network: optimism
     source:
-      address: "0x2922D9AF2B794DdD08d077d6576015Fef6e97665"
+      address: "0xE28a2D68a5E2dCa28D35820aeee53AbeAeB3df25"
       abi: ProfileRegistry
-      startBlock: 12956296
+      startBlock: 108069853 
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
