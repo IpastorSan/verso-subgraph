@@ -110,7 +110,7 @@ import { Address } from "@graphprotocol/graph-ts";
     let entity = new Token(event.params.id.toString())
     
     entity.tokenId = event.params.id.toString()
-    entity.creator = event.params.account.toString()
+    entity.creator = event.params.account.toHexString()
     entity.uri = event.params.metadataURI
   
     entity.blockNumber = event.block.number
@@ -136,9 +136,9 @@ import { Address } from "@graphprotocol/graph-ts";
     if (entity) {
       let collectors = entity.collectors;
       if (collectors) {
-          collectors = collectors.concat([event.params.account.toString()]);
+          collectors = collectors.concat([event.params.account.toHexString()]);
       } else {
-          collectors = [event.params.account.toString()];
+          collectors = [event.params.account.toHexString()];
       }
       entity.collectors = collectors;
   }
@@ -164,9 +164,9 @@ import { Address } from "@graphprotocol/graph-ts";
           }
       } else if (collectors && event.params.to != new Address(0)) {
         if (collectors) {
-          collectors = collectors.concat([event.params.to.toString()]);
+          collectors = collectors.concat([event.params.to.toHexString()]);
       } else {
-          collectors = [event.params.to.toString()];
+          collectors = [event.params.to.toHexString()];
       }
 
         let index = collectors.indexOf(event.params.from.toHexString());
